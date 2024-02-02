@@ -55,7 +55,7 @@ jobs:
 
   build:
     name: Build Hugo Static Site
-    runs-on: ubuntu-2204-64core
+    runs-on: ubuntu-22.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     needs: validate_content
@@ -87,7 +87,7 @@ jobs:
 
   validate_build:
     name: Validate Built Content
-    runs-on: ubuntu-2204-64core
+    runs-on: ubuntu-22.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     needs: build
@@ -126,7 +126,7 @@ jobs:
   deploy:
     name: Deploy Hugo Static Site to GitHub Pages
     if: github.repository == 'CiscoLearning/cisco-learning-codelabs' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-2204-64core
+    runs-on: ubuntu-22.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     needs: validate_build
