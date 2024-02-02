@@ -14,8 +14,8 @@ jobs:
 
   validate_content:
     name: Validate Source Content
-    #runs-on: ubuntu-2204-64core
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
+    # runs-on: self-hosted
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
