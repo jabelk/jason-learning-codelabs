@@ -1,0 +1,30 @@
+{{- $posts := slice -}}
+
+{{- range where (where site.RegularPages "Section" "==" "posts") ".Draft" "ne" true -}}
+  {{- $item := dict
+    "ID" ( .Title | urlize )
+    "URL" .Permalink
+    "RelURL" .RelPermalink
+    "Title" ( .Title )
+    "Description" ( .Params.description )
+    "Duration" ( .Params.duration )
+    "Authors" ( .Params.authors )
+    "Categories" .Params.categories
+    "Tags" .Params.tags
+    "PublishDate" .PublishDate
+    "Date" ( .Date.Format "2006-01-02T15:04:05Z07:00" )
+    "Modified" .Lastmod
+  -}}
+
+  {{- $posts = $posts | append $item -}}
+{{- end -}}
+
+{{- $object := dict
+  "BaseURL" .Site.BaseURL
+  "Updated" ( now.Format "2006-01-02T15:04:05Z07:00" )
+  "LastChange" .Site.LastChange
+  "CategoryColors" .Site.Params.categoryColors
+  "Posts" $posts
+-}}
+
+{{- $object | jsonify (dict "indent" "  ") -}}

@@ -1,0 +1,129 @@
+.automation-bg {
+  background-color: rgba(255, 255, 255, 0.9) !important; }
+
+google-codelab-index-cards .card.automation-bottom {
+  border-bottom-color: Orange; }
+
+.automation-icon {
+  background-image: url("assets/icons/automation.png") !important;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px; }
+
+.certification-bg {
+  background-color: rgba(255, 255, 255, 0.9) !important; }
+
+google-codelab-index-cards .card.certification-bottom {
+  border-bottom-color: Teal; }
+
+.certification-icon {
+  background-image: url("assets/icons/certification.png") !important;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px; }
+
+.cloud-bg {
+  background-color: rgba(255, 255, 255, 0.9) !important; }
+
+google-codelab-index-cards .card.cloud-bottom {
+  border-bottom-color: Grey; }
+
+.cloud-icon {
+  background-image: url("assets/icons/cloud.png") !important;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px; }
+
+.coding-bg {
+  background-color: rgba(255, 255, 255, 0.9) !important; }
+
+google-codelab-index-cards .card.coding-bottom {
+  border-bottom-color: Black; }
+
+.coding-icon {
+  background-image: url("assets/icons/coding.png") !important;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px; }
+
+.collaboration-bg {
+  background-color: rgba(255, 255, 255, 0.9) !important; }
+
+google-codelab-index-cards .card.collaboration-bottom {
+  border-bottom-color: DarkYellow; }
+
+.collaboration-icon {
+  background-image: url("assets/icons/collaboration.png") !important;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px; }
+
+.data-center-bg {
+  background-color: rgba(255, 255, 255, 0.9) !important; }
+
+google-codelab-index-cards .card.data-center-bottom {
+  border-bottom-color: DarkBlue; }
+
+.data-center-icon {
+  background-image: url("assets/icons/data-center.png") !important;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px; }
+
+.iot-bg {
+  background-color: rgba(255, 255, 255, 0.9) !important; }
+
+google-codelab-index-cards .card.iot-bottom {
+  border-bottom-color: LightPink; }
+
+.iot-icon {
+  background-image: url("assets/icons/iot.png") !important;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px; }
+
+.networking-bg {
+  background-color: rgba(255, 255, 255, 0.9) !important; }
+
+google-codelab-index-cards .card.networking-bottom {
+  border-bottom-color: DarkGreen; }
+
+.networking-icon {
+  background-image: url("assets/icons/networking.png") !important;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px; }
+
+.security-bg {
+  background-color: rgba(255, 255, 255, 0.9) !important; }
+
+google-codelab-index-cards .card.security-bottom {
+  border-bottom-color: DarkRed; }
+
+.security-icon {
+  background-image: url("assets/icons/security.png") !important;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px; }
+
+.service-provider-bg {
+  background-color: rgba(255, 255, 255, 0.9) !important; }
+
+google-codelab-index-cards .card.service-provider-bottom {
+  border-bottom-color: Violet; }
+
+.service-provider-icon {
+  background-image: url("assets/icons/service-provider.png") !important;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 8px; }

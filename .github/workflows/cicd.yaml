@@ -1,0 +1,184 @@
+name: Build and deploy Hugo static site to GitHub Pages
+
+on:
+  push:
+    branches:
+    pull_request:
+
+env:
+  HUGO-VERSION: '0.97.3' # Pin Hugo version to avoid breaking changes, set to 'latest' otherwise
+  HUGO_BASE_URL: 'https://${{ github.repository_owner }}.github.io/cisco-learning-codelabs/'
+  DEPLOY_PATH: 'cisco-learning-codelabs'
+
+jobs:
+
+  validate_content:
+    name: Validate Source Content
+    runs-on: ubuntu-2204-64core
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      # Display Information
+      - name: Display Repository Information
+        run: |
+          echo "Workflow Information"
+          echo "  Owner: ${GITHUB_REPOSITORY_OWNER}"
+          echo "  Respository: ${GITHUB_REPOSITORY}"
+          echo "  Ref: ${GITHUB_REF}"
+
+      # Fetch the repository for triggered commit
+      - name: Fetch Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      # Install Python
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+
+      # Install Python Modules
+      - name: Install Python Modules
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tests/requirements.txt
+
+      # Validate Content Frontmatter
+      - name: Validate Content Frontmatter
+        run: |
+          echo "Running Source Content Validation"
+          ./run_tests.sh
+
+  build:
+    name: Build Hugo Static Site
+    runs-on: ubuntu-2204-64core
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    needs: validate_content
+    steps:
+      # Fetch the repository for triggered commit
+      - name: Fetch Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      # Install hugo
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: ${{ env.HUGO-VERSION }} # Pin Hugo Version to avoid breaking changes
+          extended: true
+
+      # Build the static site with hugo
+      - name: Run Hugo Build
+        run: 'hugo --source=site --minify --baseURL="${{ env.HUGO_BASE_URL }}"'
+
+      # Save generated docs directory as artifact
+      - name: Upload docs Directory as Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: docs
+          path: docs/
+
+  validate_build:
+    name: Validate Built Content
+    runs-on: ubuntu-2204-64core
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    needs: build
+    steps:
+      # Fetch the repository for triggered commit
+      - name: Fetch Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      # Get the built static site from artifact
+      - name: Download Artifact from Build Stage
+        uses: actions/download-artifact@v3
+        with:
+          name: docs
+          path: docs/
+
+      # Install Ruby
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      # Install html-proofer - Needs Ruby
+      - name: Install HTML-Proofer Ruby Gem
+        run: "gem install html-proofer"
+
+      # Run html-proofer on content
+      - name: Validate Static Content
+        continue-on-error: true
+        run: |
+          htmlproofer docs/ --allow-hash-href --ignore-empty-alt --ignore-urls "/https:\/\/CiscoLearning.github.io\/cisco-learning-codelabs/"
+
+  deploy:
+    name: Deploy Hugo Static Site to GitHub Pages
+    if: github.repository == 'CiscoLearning/cisco-learning-codelabs' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-2204-64core
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    needs: validate_build
+    steps:
+      - name: Generate Deploy Repository Name
+        run: |
+          echo "DEPLOY_REPOSITORY=${GITHUB_REPOSITORY_OWNER}/${GITHUB_REPOSITORY_OWNER,,}.github.io" >> ${GITHUB_ENV}
+
+      - name: Display Deploy Repository Name
+        run: |
+          echo "Deployment Respository: ${DEPLOY_REPOSITORY}"
+
+      - name: Checkout GitHub Pages Repository
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ env.DEPLOY_REPOSITORY }}
+          submodules: false
+          fetch-depth: 0
+          #persist-credentials: false # So that push will use deployment token
+          token: ${{ secrets.DEPLOYMENT_TOKEN }}
+          # adding to try and see if can do main instead of master which right now is happening by default https://github.com/actions/checkout#checkout-multiple-repos-private
+          ref: main
+
+      # Get the built static site from artifact
+      - name: Download Artifact from Build Stage
+        uses: actions/download-artifact@v3
+        with:
+          name: docs
+          path: "docs/${{ env.DEPLOY_PATH }}/"
+
+      - name: Configure Git for Commit
+        run: |
+          git config --local user.name '${{ github.actor }}'
+          git config --local user.email '${{ github.actor }}@users.noreply.github.com'
+
+      - name: Git Add docs Directory
+        run: git add -A docs/
+
+      - name: Git Commit Update
+        id: can_commit
+        run: |
+          commit_message=$(git commit -m "Publish generated Hugo site" -a | tr -d '\n' || true)
+          echo "::set-output name=commit_message::$commit_message"
+
+      - name: Nothing to Commit
+        id: nothing_committed
+        if: contains(steps.can_commit.outputs.commit_message, 'nothing to commit')
+        run: echo "No changes were detected for Hugo site."
+
+      - name: Git Push
+        if: steps.nothing_committed.conclusion == 'skipped'
+        uses: ad-m/github-push-action@master
+        with:
+          repository: ${{ env.DEPLOY_REPOSITORY }}
+          branch: main
+          github_token: ${{ secrets.DEPLOYMENT_TOKEN }}

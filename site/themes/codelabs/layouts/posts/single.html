@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://www.cisco.com/etc/designs/cdc/clientlibs/responsive/css/cisco-sans.min.css" type="text/css">
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}google_codelab_step_scss_bin.css">
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}google_codelab_survey_scss_bin.css">
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}google_codelab_scss_bin.css">
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}google_codelab_step_overide.css">
+  <style>
+    body {
+      transition: opacity ease-in 0.2s;
+    }
+
+    body[unresolved] {
+      opacity: 0;
+      display: block;
+      overflow: hidden;
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('564-WHV-323');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = '//munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+  </script>
+
+</head>
+
+<body unresolved>
+  <google-codelab title="{{ .Title }}" id="{{ .Title | urlize }}" authors="{{ .Params.authors }}" updated="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" environment="web" {{ if .Site.Params.feedbackLink }}feedback-link="{{ .Site.Params.feedbackLink }}"{{ end }} home-url="{{ .Site.BaseURL }}" description="{{ .Params.description }}">
+
+{{ .Content }}
+
+  </google-codelab>
+  <script src="{{ .Site.BaseURL }}native-shim.js"></script>
+  <script src="{{ .Site.BaseURL }}custom-elements.min.js"></script>
+  <script src="{{ .Site.BaseURL }}prettify.js"></script>
+  <script src="{{ .Site.BaseURL }}google_codelab_step_bin.js"></script>
+  <script src="{{ .Site.BaseURL }}google_codelab_survey_bin.js"></script>
+  <script src="{{ .Site.BaseURL }}google_codelab_bin.js"></script>
+  <script src="{{ .Site.BaseURL }}google_codelab_step_overide.js"></script>
+</body>
+
+</html>
