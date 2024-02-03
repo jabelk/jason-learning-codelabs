@@ -1,0 +1,3 @@
+[submodule "jason_dev/learn_hugo/quickstart/themes/ananke"]
+	path = jason_dev/learn_hugo/quickstart/themes/ananke
+	url = https://github.com/theNewDynamic/gohugo-theme-ananke.git
