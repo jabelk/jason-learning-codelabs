@@ -1,17 +1,3 @@
-# WIP Tutorial Tooling
-
-Two directions / goals:
-
-- build tool to generate tutorial for existing process with new sidecar JSON
-- improve process by including Google Docs / DOCX
-
-## Tutorial Tool: Adapting for Sidecar
-
-### Features: Required
-
-1. generate sidecar JSON with the [following schema](https://learning-confluence.cisco.com/confluence/pages/viewpage.action?spaceKey=MW1&title=Content-Automation-Service):
-
-```json
 {
     "id" : "ccna-intro-acl",
     "title" : "CCNA: Configure Your First ACL",
@@ -76,29 +62,3 @@ Two directions / goals:
     "active" : true
 
 }
-```
-
-It must have a folder structure matching that in the poplartest folder, found within the same repository, e.g.
-```
-assets/
-images/
-sidecar.json
-step-1.md
-...
-step-5.md
-```
-
-2. Publishing
-With the repository and sidecar properly configured, the deployment process is started by making a POST request to <https://git.certsite.net/poplar/newTutorialToStage> with a body in the format
-
-```
-{
-    "course_ids": ["poplartest"],
-    "create_tickets": true,
-    "create_catalog_entries": true
-}
-
-```
-"course_ids" is a list of courses that you want to deploy.
-"create_tickets" indicates if you want Jira tickets to automatically be created in the DDCM space.
-"create_catalog_entries" automatically creates entries for all courses in the content catalog on staging.

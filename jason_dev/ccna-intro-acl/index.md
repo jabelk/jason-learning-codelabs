@@ -9,6 +9,8 @@ feedback_link: https://github.com/googlecodelabs/your-first-pwapp/issues
 analytics_account: UA-52746336-1
 source: 1qJhgYNoJnvCzUWMX9Mln-EZfqUYTbzzDDxFHIYo9CAA
 duration: 4
+title: CCNA: Configure Your First ACL
+date: 2023-09-28
 
 ---
 
