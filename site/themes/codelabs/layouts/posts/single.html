@@ -45,7 +45,7 @@
         }
       };
       s.onload = initMunchkin;
-      document.getElementsByTagName['head'](0).appendChild(s);
+      document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
 
@@ -57,11 +57,7 @@
     }}feedback-link="{{ .Site.Params.feedbackLink }}" {{ end }} home-url="{{ .Site.BaseURL }}"
     description="{{ .Params.description }}">
 
-    {{ range .Pages }}
-    <google-codelab-step label="{{ .Params.label }}" {{ with .Params.duration }} duration="{{ . }}" {{ end }}>
-      {{ .Content }}
-    </google-codelab-step>
-    {{ end }}
+    {{ .Content }}
 
   </google-codelab>
   <script src="{{ .Site.BaseURL }}native-shim.js"></script>
