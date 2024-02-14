@@ -1,13 +1,3 @@
----
-title: "{{ replace .Name "-" " " | title }}"
-date: {{ now.Format "2006-01-02" }}
-description: "{{ replace .Name "-" " " | title }}"
-categories: [ CATEGORY_PRIMARY, CATEGORY1, CATEGORYN ]
-tags: [ TAG1, TAG2, TAGN ]
-duration: MM:SS
-authors: AUTHOR_NAME
-draft: true
----
 
 <!-- MANDATORY STEP: Overview Step is a required step and must be at the beginning of each codelab -->
 {{< step label="Overview" duration="1:00" >}}

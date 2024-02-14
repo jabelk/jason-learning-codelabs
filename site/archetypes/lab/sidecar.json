@@ -1,0 +1,63 @@
+{
+    "id": "ccna-intro-acl",
+    "title": "{{ replace .Name "-" "" | title }}",
+    "description": "Unlock the power of access control lists...",
+    "date": "{{ now.Format "2006-01-02" }}",
+    "duration": "1h30m00s",
+    "ia-guid": "dd3876a4-a148-4ef3-af33-ac8f3fb69bab",
+    "lesson-guid": "99d03642-0bb2-4fc0-ba0c-d7efdac982ad",
+    "certifications": "ccna",
+    "skill-levels": "intermediate",
+    "tags": [
+        {
+            "tag": "Kubernetes"
+        },
+        {
+            "tag": "KubeCtl"
+        }
+    ],
+    "technologies": [
+        {
+            "tech": "Cloud"
+        }
+    ],
+    "files": [
+        {
+            "label": "Overview",
+            "duration": "5:00",
+            "xy-guid": "29d5f00f-233b-4cf3-8280-5fedc1599bb8",
+            "file": "step-1.md"
+        },
+        {
+            "label": "What is K8s",
+            "duration": "5:00",
+            "xy-guid": "f0ba7101-f83a-41a0-9aac-f434daaaa9fe",
+            "file": "step-2.md"
+        },
+        {
+            "label": "Deploy K8s",
+            "duration": "10:00",
+            "xy-guid": "c4fb099a-9a94-4575-bb58-58ed7ab04e88",
+            "file": "step-3.md"
+        },
+        {
+            "label": "Kubectl Basics",
+            "duration": "5:00",
+            "xy-guid": "a6f1150f-1c32-4725-aa7a-a3451dcad93e",
+            "file": "step-4.md"
+        },
+        {
+            "label": "Congratulations",
+            "duration": "5:00",
+            "xy-guid": "d9665972-ad86-4a08-9d4a-d7236c5c63b5",
+            "file": "step-5.md"
+        }
+    ],
+    "authors": [
+        {
+            "name": "Kareem Iskander",
+            "email": "kiskande@cisco.com"
+        }
+    ],
+    "active": true
+}

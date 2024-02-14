@@ -1,0 +1,35 @@
+{
+  "environment": "web",
+  "format": "md",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2024-02-06T21:13:48Z",
+  "id": "ccna-intro-acl",
+  "duration": 4,
+  "title": "CCNA: Configure Your First ACL",
+  "authors": "[      {\"name\": \"Kareem Iskander\", \"email\": \"kiskande@cisco.com\"}]",
+  "summary": "",
+  "source": "1qJhgYNoJnvCzUWMX9Mln-EZfqUYTbzzDDxFHIYo9CAA",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "[{\"tag\":\"kubernetes\"}",
+    "{\"tag\":\"kubectl\"}]"
+  ],
+  "feedback": "https://github.com/googlecodelabs/your-first-pwapp/issues",
+  "ga": "UA-52746336-1",
+  "extra": {
+    "active": "true",
+    "certifications": "n/a",
+    "date": "2023-09-28",
+    "files": "[    {\"label\":\"Overview\",        \"duration\":\"5:00\",  \"xy-guid\":\"29d5f00f-233b-4cf3-8280-5fedc1599bb8\", \"file\": \"step-1.md\"},    {\"label\":\"What is K8s\",     \"duration\":\"5:00\",  \"xy-guid\":\"f0ba7101-f83a-41a0-9aac-f434daaaa9fe\", \"file\": \"step-2.md\"},    {\"label\":\"Deploy K8s\",      \"duration\":\"10:00\", \"xy-guid\":\"c4fb099a-9a94-4575-bb58-58ed7ab04e88\", \"file\": \"step-3.md\"},    {\"label\":\"Kubectl Basics\",  \"duration\":\"5:00\",  \"xy-guid\":\"a6f1150f-1c32-4725-aa7a-a3451dcad93e\", \"file\": \"step-4.md\"},    {\"label\":\"Congratulations\", \"duration\":\"5:00\",  \"xy-guid\":\"d9665972-ad86-4a08-9d4a-d7236c5c63b5\", \"file\": \"step-5.md\"} ]",
+    "technologies": "[      {\"tech\": \"Cloud\"}]",
+    "title": "CCNA: Configure Your First ACL"
+  },
+  "url": "ccna-intro-acl"
+}
